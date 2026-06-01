@@ -1,0 +1,9 @@
+<div class="stats-grid">
+  {% for stat in stats %}
+    <article class="stat-card reveal">
+      <span>{{ stat.label }}</span>
+      <strong data-counter="{{ stat.value }}">{{ stat.value }}</strong>
+      <small>{{ stat.trend }}</small>
+    </article>
+  {% endfor %}
+</div>

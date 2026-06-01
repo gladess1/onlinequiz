@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% block title %}Quizzes | QuizForge{% endblock %}
+{% block content %}
+{% include "components/page_header.html" with eyebrow="Quiz library" title="Choose your next challenge" subtitle="Filter, search, and start a quiz that matches your current level." %}
+<section class="toolbar">
+  <label class="search-box">Search quizzes<input type="search" placeholder="Search by title, category, or level" data-live-search></label>
+  <select aria-label="Filter by category"><option>All categories</option><option>Programming</option><option>Web Development</option></select>
+</section>
+<section class="quiz-grid">{% for quiz in quizzes %}{% include "components/quiz_card.html" %}{% endfor %}</section>
+{% include "components/pagination.html" %}
+{% endblock %}

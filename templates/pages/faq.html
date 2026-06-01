@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% block title %}FAQ | QuizForge{% endblock %}
+{% block content %}
+{% include "components/page_header.html" with eyebrow="FAQ" title="Answers before the first attempt" subtitle="A few common details about quizzes, results, and certificates." %}
+<section class="faq-list">
+  <details open><summary>Can quizzes be timed?</summary><p>Yes. The quiz interface includes a visible countdown, progress bar, and automatic timeout handling.</p></details>
+  <details><summary>Can students review wrong answers?</summary><p>Yes. Review pages highlight correct, wrong, and missed answers with explanations.</p></details>
+  <details><summary>Are certificates supported?</summary><p>Yes. The certificate page is ready for dynamic student, quiz, date, and score data.</p></details>
+</section>
+{% endblock %}

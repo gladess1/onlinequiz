@@ -1,0 +1,6 @@
+{% extends "base.html" %}
+{% block title %}Manage Leaderboard | QuizForge{% endblock %}
+{% block content %}
+{% include "components/page_header.html" with eyebrow="Admin" title="Manage leaderboard" subtitle="Audit high scores and ranking records." %}
+<section class="score-table">{% for user in leaders %}<div><span>#{{ user.rank }} {{ user.name }}</span><strong>{{ user.score }}%</strong></div>{% endfor %}</section>
+{% endblock %}

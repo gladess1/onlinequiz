@@ -1,0 +1,5 @@
+{% extends "base.html" %}
+{% block title %}Delete Confirmation | QuizForge{% endblock %}
+{% block content %}
+<section class="empty-state danger"><h1>Delete this item?</h1><p>This action cannot be undone.</p><form method="post">{% csrf_token %}<button class="btn btn-danger" type="submit">Delete permanently</button><a class="btn btn-ghost" href="{% url 'admin_dashboard' %}">Cancel</a></form></section>
+{% endblock %}

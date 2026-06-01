@@ -1,0 +1,20 @@
+<article class="quiz-card reveal" data-search-item>
+  <div class="quiz-cover {{ quiz.color }}">
+    <span>{{ quiz.category }}</span>
+    <strong>{{ quiz.title|slice:":1" }}</strong>
+  </div>
+  <div class="quiz-card-body">
+    <div class="pill-row">
+      <span class="pill">{{ quiz.level }}</span>
+      <span class="pill">{{ quiz.duration }} min</span>
+      <span class="pill">{{ quiz.questions }} questions</span>
+    </div>
+    <h2>{{ quiz.title }}</h2>
+    <p>{{ quiz.description }}</p>
+    <div class="meta-row">
+      <span>★ {{ quiz.rating }}</span>
+      <span>{{ quiz.attempts }} attempts</span>
+    </div>
+    <a class="btn btn-outline full" href="{% url 'quiz_detail' quiz.slug %}">View quiz</a>
+  </div>
+</article>

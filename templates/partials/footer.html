@@ -1,0 +1,32 @@
+<footer class="site-footer">
+  <div class="footer-grid">
+    <div>
+      <a class="brand footer-brand" href="{% url 'home' %}">
+        <span class="brand-mark">Q</span>
+        <span>QuizForge</span>
+      </a>
+      <p>Practice smarter with timed assessments, answer reviews, certificates, and progress insights.</p>
+    </div>
+    <div>
+      <h2>Learn</h2>
+      <a href="{% url 'quiz_list' %}">Quiz library</a>
+      <a href="{% url 'leaderboard' %}">Leaderboard</a>
+      <a href="{% url 'certificate' %}">Certificates</a>
+    </div>
+    <div>
+      <h2>Company</h2>
+      <a href="{% url 'about' %}">About</a>
+      <a href="{% url 'contact' %}">Contact</a>
+      <a href="{% url 'faq' %}">FAQ</a>
+    </div>
+    <div>
+      <h2>Legal</h2>
+      <a href="{% url 'terms' %}">Terms</a>
+      <a href="{% url 'privacy' %}">Privacy</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2026 QuizForge. Built for confident learning.</span>
+    <span>Accessible, responsive, and exam-ready.</span>
+  </div>
+</footer>

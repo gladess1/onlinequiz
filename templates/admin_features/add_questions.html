@@ -1,0 +1,6 @@
+{% extends "base.html" %}
+{% block title %}Add Questions | QuizForge{% endblock %}
+{% block content %}
+{% include "components/page_header.html" with eyebrow="Admin" title="Add questions" subtitle="Write clear prompts, options, and answer explanations." %}
+<form class="card-form" method="post">{% csrf_token %}<label>Question<textarea rows="4" required></textarea></label><div class="form-grid"><label>Option A<input required></label><label>Option B<input required></label><label>Option C<input></label><label>Option D<input></label></div><label>Correct answer<select><option>A</option><option>B</option><option>C</option><option>D</option></select></label><button class="btn btn-primary" type="submit">Save question</button></form>
+{% endblock %}

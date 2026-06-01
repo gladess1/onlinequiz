@@ -1,0 +1,6 @@
+{% extends "base.html" %}
+{% block title %}Leaderboard | QuizForge{% endblock %}
+{% block content %}
+{% include "components/page_header.html" with eyebrow="Leaderboard" title="Top performers this week" subtitle="Celebrate consistency, accuracy, and focused practice." %}
+<section class="table-card"><table><thead><tr><th>Rank</th><th>Learner</th><th>Score</th><th>Quizzes</th><th>Streak</th></tr></thead><tbody>{% for user in leaders %}<tr><td>#{{ user.rank }}</td><td>{{ user.name }}</td><td>{{ user.score }}%</td><td>{{ user.quizzes }}</td><td>{{ user.streak }} days</td></tr>{% endfor %}</tbody></table></section>
+{% endblock %}

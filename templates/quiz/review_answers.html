@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% block title %}Review Answers | QuizForge{% endblock %}
+{% block content %}
+{% include "components/page_header.html" with eyebrow="Review" title="Review your answers" subtitle="Correct, wrong, and missed answers are highlighted for fast learning." %}
+<section class="review-list">
+  {% for question in questions %}
+    <article class="review-card {{ question.state }}"><h2>{{ question.number }}. {{ question.text }}</h2>{% for option in question.options %}<p class="{% if option == question.answer %}right{% elif option == question.selected and question.state == 'wrong' %}bad{% endif %}">{{ option }}</p>{% endfor %}<small>Correct answer: {{ question.answer }}</small><small>{{ question.explanation }}</small></article>
+  {% endfor %}
+</section>
+{% endblock %}

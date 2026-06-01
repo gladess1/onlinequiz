@@ -1,0 +1,6 @@
+{% extends "base.html" %}
+{% block title %}Create Quiz | QuizForge{% endblock %}
+{% block content %}
+{% include "components/page_header.html" with eyebrow="Admin" title="Create quiz" subtitle="Design the quiz shell before adding questions." %}
+<form class="card-form" method="post">{% csrf_token %}<label>Title<input name="title" required></label><label>Category<select><option>Programming</option><option>Web Development</option></select></label><label>Duration minutes<input type="number" value="25" min="1"></label><label>Description<textarea rows="4"></textarea></label><button class="btn btn-primary" type="submit">Create quiz</button></form>
+{% endblock %}

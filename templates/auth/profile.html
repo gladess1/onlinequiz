@@ -1,0 +1,7 @@
+{% extends "base.html" %}
+{% block title %}Profile | QuizForge{% endblock %}
+{% block content %}
+{% include "components/page_header.html" with eyebrow="Profile" title="Gladess" subtitle="Student account with a 14-day learning streak." action_url="/profile/edit/" action_label="Edit profile" %}
+{% include "components/stats_grid.html" %}
+<section class="activity-list">{% for item in activity %}<article><span>✓</span>{{ item }}</article>{% endfor %}</section>
+{% endblock %}

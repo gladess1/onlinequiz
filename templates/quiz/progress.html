@@ -1,0 +1,6 @@
+{% extends "base.html" %}
+{% block title %}Progress | QuizForge{% endblock %}
+{% block content %}
+{% include "components/page_header.html" with eyebrow="Progress" title="Your learning momentum" subtitle="Track completion, accuracy, streaks, and topic growth." %}
+<section class="analytics-grid"><article class="chart-card"><h2>Weekly accuracy</h2><div class="bar-chart"><span style="height:50%"></span><span style="height:64%"></span><span style="height:72%"></span><span style="height:86%"></span><span style="height:92%"></span></div></article><article class="chart-card"><h2>Topic strength</h2><div class="donut"></div></article></section>
+{% endblock %}

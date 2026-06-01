@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% block title %}Contact | QuizForge{% endblock %}
+{% block content %}
+{% include "components/page_header.html" with eyebrow="Contact" title="Tell us what you are building" subtitle="Send a note and the academic success team will follow up." %}
+<section class="form-layout">
+  <form class="card-form" method="post">
+    {% csrf_token %}
+    <label>Name<input type="text" name="name" placeholder="Your name" required></label>
+    <label>Email<input type="email" name="email" placeholder="you@example.com" required></label>
+    <label>Message<textarea name="message" rows="6" placeholder="How can we help?" required></textarea></label>
+    <button class="btn btn-primary" type="submit">Send message</button>
+  </form>
+  <aside class="info-panel">
+    <h2>Support hours</h2>
+    <p>Monday to Friday, 9:00 AM - 6:00 PM.</p>
+    <p>Email: hello@quizforge.local</p>
+  </aside>
+</section>
+{% endblock %}

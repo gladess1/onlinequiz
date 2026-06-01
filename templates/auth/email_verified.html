@@ -1,0 +1,5 @@
+{% extends "base.html" %}
+{% block title %}Email Verified | QuizForge{% endblock %}
+{% block content %}
+<section class="empty-state"><div class="success-icon">✓</div><h1>Email verified</h1><p>Your account is ready. Start with a recommended quiz.</p><a class="btn btn-primary" href="{% url 'quiz_list' %}">Browse quizzes</a></section>
+{% endblock %}

@@ -1,0 +1,269 @@
+{% extends "base.html" %}
+{% block title %}Quiz Interface | QuizForge{% endblock %}
+
+{% block content %}
+
+<section class="quiz-interface"
+         data-quiz
+         data-duration="{{ quiz.duration_seconds|default:1500 }}">
+
+  <div class="quiz-main">
+
+    <div class="quiz-topbar">
+
+      <div>
+        <p class="eyebrow">{{ quiz.title }}</p>
+
+        <h1>
+          Question
+          <span id="current-question-number">1</span>
+          of {{ questions|length }}
+        </h1>
+      </div>
+
+      <div class="timer" data-timer>
+        {{ quiz.duration|default:25 }}:00
+      </div>
+
+    </div>
+
+    <div class="progress-track large">
+      <span data-quiz-progress style="width:0%"></span>
+    </div>
+
+    <form method="post"
+          action="{% url 'submit_quiz' quiz.slug %}"
+          id="quiz-submit-form">
+
+      {% csrf_token %}
+
+      {% for question in questions %}
+
+      <article class="question-card quiz-question"
+               {% if not forloop.first %}style="display:none;"{% endif %}>
+
+        <h2>
+          {{ question.number }}. {{ question.text }}
+        </h2>
+
+        <div class="options-list">
+
+          {% for choice in question.choices %}
+
+          <label>
+            <input type="radio"
+                   name="question_{{ question.id }}"
+                   value="{{ choice.id }}">
+
+            <span>{{ choice.text }}</span>
+          </label>
+
+          {% endfor %}
+
+        </div>
+
+      </article>
+
+      {% endfor %}
+
+    </form>
+
+    <div class="quiz-actions">
+
+      <button class="btn btn-outline"
+              type="button"
+              id="prev-btn">
+        Previous
+      </button>
+
+      <button class="btn btn-primary"
+              type="button"
+              id="next-btn">
+        Next
+      </button>
+
+      <button class="btn btn-danger"
+              type="button"
+              id="submit-btn"
+              style="display:none;">
+        Submit Quiz
+      </button>
+
+    </div>
+
+  </div>
+
+  <aside class="question-nav">
+
+    <h2>Questions</h2>
+
+    <div>
+
+      {% for question in questions %}
+
+      <button type="button"
+              class="question-nav-btn {% if forloop.first %}active{% endif %}">
+        {{ question.number }}
+      </button>
+
+      {% endfor %}
+
+    </div>
+
+  </aside>
+
+</section>
+
+{% endblock %}
+
+{% block modals %}
+
+<div class="modal-backdrop" id="submit-modal" style="display:none;">
+
+  <div class="modal">
+
+    <h2>Submit quiz?</h2>
+
+    <p>
+      You can still review skipped questions before final submission.
+    </p>
+
+    <div class="modal-actions">
+
+      <button class="btn btn-ghost"
+              id="keep-working-btn"
+              type="button">
+        Keep working
+      </button>
+
+      <button class="btn btn-primary"
+              form="quiz-submit-form"
+              type="submit">
+        Submit now
+      </button>
+
+    </div>
+
+  </div>
+
+</div>
+
+<script>
+
+document.addEventListener("DOMContentLoaded", () => {
+
+  const questions = document.querySelectorAll(".quiz-question");
+  const navButtons = document.querySelectorAll(".question-nav-btn");
+
+  const prevBtn = document.getElementById("prev-btn");
+  const nextBtn = document.getElementById("next-btn");
+  const submitBtn = document.getElementById("submit-btn");
+
+  const currentText = document.getElementById("current-question-number");
+
+  const modal = document.getElementById("submit-modal");
+
+  const keepWorkingBtn = document.querySelector("[data-modal-close]");
+
+  let current = 0;
+
+  // popup hidden by default
+  modal.style.display = "none";
+
+  function showQuestion(index) {
+
+    questions.forEach((q, i) => {
+      q.style.display = i === index ? "block" : "none";
+    });
+
+    navButtons.forEach((btn, i) => {
+      btn.classList.toggle("active", i === index);
+    });
+
+    currentText.textContent = index + 1;
+
+    prevBtn.style.display = index === 0 ? "none" : "inline-flex";
+
+    if (index === questions.length - 1) {
+
+      nextBtn.style.display = "none";
+
+      submitBtn.style.display = "inline-flex";
+
+    } else {
+
+      nextBtn.style.display = "inline-flex";
+
+      submitBtn.style.display = "none";
+
+    }
+
+    const progress = document.querySelector("[data-quiz-progress]");
+
+    if (progress) {
+
+      const percent = ((index + 1) / questions.length) * 100;
+
+      progress.style.width = percent + "%";
+
+    }
+
+  }
+
+  nextBtn.addEventListener("click", () => {
+
+    if (current < questions.length - 1) {
+
+      current++;
+
+      showQuestion(current);
+
+    }
+
+  });
+
+  prevBtn.addEventListener("click", () => {
+
+    if (current > 0) {
+
+      current--;
+
+      showQuestion(current);
+
+    }
+
+  });
+
+  navButtons.forEach((btn, index) => {
+
+    btn.addEventListener("click", () => {
+
+      current = index;
+
+      showQuestion(current);
+
+    });
+
+  });
+
+  // OPEN POPUP
+  submitBtn.addEventListener("click", () => {
+
+    modal.style.display = "flex";
+
+  });
+
+  // CLOSE POPUP
+  keepWorkingBtn.addEventListener("click", () => {
+
+    modal.style.display = "none";
+
+  });
+
+  showQuestion(current);
+
+});
+
+</script>
+
+{% endblock %}

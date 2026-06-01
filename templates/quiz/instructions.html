@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% block title %}Instructions | QuizForge{% endblock %}
+{% block content %}
+{% include "components/page_header.html" with eyebrow="Instructions" title=quiz.title subtitle="Read the rules once, then start when you are ready." %}
+<section class="instruction-list">
+  <article><strong>1</strong><p>The quiz has {{ quiz.questions }} questions and a {{ quiz.duration }} minute timer.</p></article>
+  <article><strong>2</strong><p>You can navigate between questions before final submission.</p></article>
+  <article><strong>3</strong><p>On timeout, the quiz is submitted automatically.</p></article>
+</section>
+<a class="btn btn-primary" href="{% url 'start_quiz' quiz.slug %}">Start quiz</a>
+{% endblock %}

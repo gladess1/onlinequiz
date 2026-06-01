@@ -1,0 +1,6 @@
+{% extends "base.html" %}
+{% block title %}Manage Users | QuizForge{% endblock %}
+{% block content %}
+{% include "components/page_header.html" with eyebrow="Admin" title="Manage users" subtitle="Review roles, activity, and account state." %}
+<section class="toolbar"><label class="search-box">Search users<input type="search" data-live-search></label></section><section class="data-table"><table><thead><tr><th>Name</th><th>Role</th><th>Status</th><th>Actions</th></tr></thead><tbody data-search-item><tr><td>Gladess</td><td>Student</td><td><span class="badge success">Active</span></td><td><a href="{% url 'edit_profile' %}">Edit</a></td></tr><tr><td>Maya Iyer</td><td>Teacher</td><td><span class="badge success">Active</span></td><td><a href="{% url 'edit_profile' %}">Edit</a></td></tr></tbody></table></section>
+{% endblock %}

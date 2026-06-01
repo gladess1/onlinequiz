@@ -1,0 +1,5 @@
+{% extends "base.html" %}
+{% block title %}Logged Out | QuizForge{% endblock %}
+{% block content %}
+<section class="empty-state"><div class="success-icon">✓</div><h1>You are logged out</h1><p>Your session ended safely.</p><a class="btn btn-primary" href="{% url 'login' %}">Log in again</a></section>
+{% endblock %}

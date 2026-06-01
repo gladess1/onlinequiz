@@ -1,0 +1,6 @@
+{% extends "base.html" %}
+{% block title %}Score Card | QuizForge{% endblock %}
+{% block content %}
+{% include "components/page_header.html" with eyebrow="Score card" title="Detailed performance summary" subtitle="A clear breakdown of accuracy, speed, and topic performance." %}
+<section class="score-table"><div><span>Correct</span><strong>{{ attempt.correct_answers|default:"0" }}</strong></div><div><span>Wrong</span><strong>{{ attempt.wrong_answers|default:"0" }}</strong></div><div><span>Skipped</span><strong>{{ attempt.skipped_answers|default:"0" }}</strong></div><div><span>Percentage</span><strong>{{ attempt.percentage|default:"0" }}%</strong></div></section>
+{% endblock %}

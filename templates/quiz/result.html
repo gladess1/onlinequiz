@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+{% block title %}Result | QuizForge{% endblock %}
+{% block content %}
+<section class="result-hero">
+  <div class="score-ring"><span>{{ attempt.percentage|default:"0" }}%</span></div>
+  <div><p class="eyebrow">Result</p><h1>Excellent work</h1><p>You answered {{ attempt.correct_answers|default:"0" }} of {{ attempt.total_questions|default:"0" }} questions correctly.</p><div class="hero-actions"><a class="btn btn-primary" href="{% url 'review_answers' quiz.slug %}?attempt={{ attempt.id }}">Review answers</a><a class="btn btn-outline" href="{% url 'score_card' quiz.slug %}?attempt={{ attempt.id }}">Score card</a></div></div>
+</section>
+{% include "components/stats_grid.html" %}
+{% endblock %}

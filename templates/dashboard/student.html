@@ -1,0 +1,8 @@
+{% extends "base.html" %}
+{% block title %}Student Dashboard | QuizForge{% endblock %}
+{% block content %}
+<section class="dashboard-layout">
+  <aside class="sidebar"><h2>Student</h2><a class="active" href="{% url 'student_dashboard' %}">Overview</a><a href="{% url 'progress' %}">Progress</a><a href="{% url 'certificate' %}">Certificates</a></aside>
+  <div class="dashboard-main">{% include "components/page_header.html" with eyebrow="Dashboard" title="Welcome back, Gladess" subtitle="Your next best action is a 20 minute Django review." %}{% include "components/stats_grid.html" %}<section class="analytics-grid"><article class="chart-card"><h2>Performance analytics</h2><div class="bar-chart"><span style="height:52%"></span><span style="height:70%"></span><span style="height:61%"></span><span style="height:88%"></span></div></article><article class="activity-card"><h2>Recent activity</h2>{% for item in activity %}<p>{{ item }}</p>{% endfor %}</article></section></div>
+</section>
+{% endblock %}

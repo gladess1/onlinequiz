@@ -1,0 +1,6 @@
+{% extends "base.html" %}
+{% block title %}Edit Quiz | QuizForge{% endblock %}
+{% block content %}
+{% include "components/page_header.html" with eyebrow="Admin" title="Edit quiz" subtitle="Update quiz metadata, timing, and availability." %}
+<form class="card-form" method="post">{% csrf_token %}<label>Title<input value="Python Foundations"></label><label>Status<select><option>Published</option><option>Draft</option></select></label><label>Duration<input type="number" value="25"></label><button class="btn btn-primary" type="submit">Save quiz</button></form>
+{% endblock %}

@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+{% block title %}QuizForge | Modern Online Quiz Platform{% endblock %}
+{% block content %}
+<section class="hero">
+  <div class="hero-copy reveal">
+    <p class="eyebrow">Online assessment platform</p>
+    <h1>Practice with focus. Review with clarity. Improve every week.</h1>
+    <p>QuizForge combines timed quizzes, analytics, certificates, and answer reviews in a polished learning workspace.</p>
+    <div class="hero-actions">
+      <a class="btn btn-primary" href="{% url 'quiz_list' %}">Explore quizzes</a>
+      <a class="btn btn-ghost" href="{% url 'student_dashboard' %}">View dashboard</a>
+    </div>
+  </div>
+  <div class="hero-panel reveal" aria-label="Quiz performance preview">
+    <div class="floating-card score-orbit">
+      <span>Current score</span>
+      <strong>92%</strong>
+    </div>
+    <div class="mock-window">
+      <div class="mock-toolbar"><span></span><span></span><span></span></div>
+      <h2>Django Web Basics</h2>
+      <div class="progress-track"><span style="width: 72%"></span></div>
+      <div class="answer correct">Template inheritance keeps layouts reusable.</div>
+      <div class="answer">Views connect routes to page responses.</div>
+      <div class="answer wrong">Models are only used for CSS.</div>
+    </div>
+  </div>
+</section>
+
+{% include "components/stats_grid.html" %}
+
+<section class="section-head">
+  <div>
+    <p class="eyebrow">Popular quizzes</p>
+    <h2>Start with a guided challenge</h2>
+  </div>
+  <a class="text-link" href="{% url 'quiz_list' %}">Browse all</a>
+</section>
+<section class="quiz-grid">
+  {% for quiz in quizzes %}
+    {% include "components/quiz_card.html" %}
+  {% endfor %}
+</section>
+{% endblock %}

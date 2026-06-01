@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% block title %}Sign up | QuizForge{% endblock %}
+{% block content %}
+<section class="auth-wrap">
+  <form class="auth-card" method="post" novalidate data-validate-form>
+    {% csrf_token %}
+    {{ form.errors }}
+    <p class="eyebrow">Start learning</p>
+    <h1>Create your account</h1>
+    <label>Full name<input type="text" name="name" placeholder="Your name" required></label>
+    <label>Email<input type="email" name="email" placeholder="you@example.com" required></label>
+    <label>Password<span class="password-field"><input type="password" name="password" required data-password data-strength-input><button type="button" data-password-toggle>Show</button></span></label>
+    <div class="strength-meter" aria-label="Password strength"><span data-strength-bar></span></div>
+    <label class="check"><input type="checkbox" required> I agree to the platform terms</label>
+    <button class="btn btn-primary full" type="submit">Create account</button>
+    <p class="form-note">Already registered? <a href="{% url 'login' %}">Log in</a></p>
+  </form>
+</section>
+{% endblock %}

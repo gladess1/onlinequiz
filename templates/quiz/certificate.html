@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+
+{% block title %}Certificate | QuizForge{% endblock %}
+
+{% block content %}
+
+{% if result and result.passed %}
+
+<section class="certificate">
+    
+    <p class="eyebrow">Certificate of Completion</p>
+
+    <h1>
+        {{ request.user.first_name }} {{ request.user.last_name }}
+    </h1>
+
+    <p>has successfully completed</p>
+
+    <h2>{{ quiz.title }}</h2>
+
+    <strong>Score: {{ result.percentage }}%</strong>
+
+    <span>
+        Issued {{ attempt.submitted_at|date:"F d, Y" }}
+    </span>
+
+    <div style="margin-top: 30px;">
+        <button class="btn btn-primary" onclick="window.print()">
+            Download Certificate
+        </button>
+    </div>
+
+</section>
+
+{% else %}
+
+<section class="certificate" style="text-align:center;">
+
+    <p class="eyebrow">Certificate Locked</p>
+
+    <h1>Practice Again</h1>
+
+    <p>
+        You need at least <strong>40%</strong> to unlock the certificate.
+    </p>
+
+    {% if result %}
+        <strong>Your Score: {{ result.percentage }}%</strong>
+    {% endif %}
+
+    <div style="margin-top:30px;">
+        <a href="{% url 'quiz_list' %}" class="btn btn-danger">
+            Try Another Quiz
+        </a>
+    </div>
+
+</section>
+
+{% endif %}
+
+{% endblock %}

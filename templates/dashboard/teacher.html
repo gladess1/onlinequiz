@@ -1,0 +1,5 @@
+{% extends "base.html" %}
+{% block title %}Teacher Dashboard | QuizForge{% endblock %}
+{% block content %}
+<section class="dashboard-layout"><aside class="sidebar"><h2>Teacher</h2><a class="active" href="{% url 'teacher_dashboard' %}">Overview</a><a href="{% url 'create_quiz' %}">Quizzes</a><a href="{% url 'progress' %}">Analytics</a></aside><div class="dashboard-main">{% include "components/page_header.html" with eyebrow="Teacher" title="Classroom assessment view" subtitle="Prepare quizzes and monitor learner progress." %}{% include "components/stats_grid.html" %}</div></section>
+{% endblock %}

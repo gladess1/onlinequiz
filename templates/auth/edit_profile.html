@@ -1,0 +1,6 @@
+{% extends "base.html" %}
+{% block title %}Edit Profile | QuizForge{% endblock %}
+{% block content %}
+{% include "components/page_header.html" with eyebrow="Profile" title="Edit profile" subtitle="Keep your learning identity and contact details up to date." %}
+<form class="card-form narrow" method="post">{% csrf_token %}<label>Full name<input type="text" value="Aarav Sharma"></label><label>Email<input type="email" value="aarav@example.com"></label><label>Bio<textarea rows="4">Python learner preparing for full-stack interviews.</textarea></label><button class="btn btn-primary" type="submit">Save changes</button></form>
+{% endblock %}
