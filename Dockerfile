@@ -6,6 +6,8 @@ COPY . .
 
 RUN pip install -r requirements.txt
 
-EXPOSE 8000
+RUN python manage.py collectstatic --noinput
 
-CMD ["python","manage.py","runserver","0.0.0.0:8000"]
+EXPOSE 10000
+
+CMD ["gunicorn","onlinequiz.wsgi:application","--bind","0.0.0.0:10000"]
